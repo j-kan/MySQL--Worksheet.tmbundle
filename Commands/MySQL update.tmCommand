@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#! /usr/bin/env ruby
+
+TABLE_NAME = ENV['TM_CURRENT_WORD']
+SCHEMA_NAME = ENV['MYSQL_DEFAULT_DB']
+MYSQL_CMD = "#{ENV['MYSQL_DIR']}/bin/mysql -u#{ENV['MYSQL_USER']} -p#{ENV['MYSQL_PW']}"
+
+
+QUERY = &lt;&lt;END
+   select column_name
+     from information_schema.columns
+    where table_name='#{TABLE_NAME}'
+      and table_schema='#{SCHEMA_NAME}'
+END
+
+QUERY_KEYS = &lt;&lt;END
+ select key_columns from 
+   (select table_name,
+            group_concat(column_name) as key_columns
+      from information_schema.KEY_COLUMN_USAGE 
+     where CONSTRAINT_SCHEMA='#{SCHEMA_NAME}' 
+       and table_name='#{TABLE_NAME}' 
+       and constraint_name = 'PRIMARY') as meta
+END
+
+columns = `echo "#{QUERY}" | #{MYSQL_CMD} -Dinformation_schema`.split(/\n/)
+columns = columns[1..columns.size]
+keys    = `echo "#{QUERY_KEYS}" | #{MYSQL_CMD} -Dinformation_schema`.split(/\n/)[1].split(/,/)
+
+values  = columns - keys
+
+setvals = values.map{|col| "#{col} = ?"}.join(",\n       ")
+wheres  =   keys.map{|col| "#{col} = ?"}.join("\n   AND ")
+
+puts ''
+puts "UPDATE #{TABLE_NAME}"
+puts "   SET #{setvals}"
+puts " WHERE #{wheres}"
+
+
+</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^@u</string>
+	<key>name</key>
+	<string>MySQL update</string>
+	<key>output</key>
+	<string>afterSelectedText</string>
+	<key>scope</key>
+	<string>source.mysql</string>
+	<key>uuid</key>
+	<string>1CDACE86-9438-4B0A-B7BD-BE9A365DD38C</string>
+</dict>
+</plist>

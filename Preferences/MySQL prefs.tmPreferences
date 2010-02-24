@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>MySQL prefs</string>
+	<key>scope</key>
+	<string>source.mysql</string>
+	<key>settings</key>
+	<dict>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>MYSQL_DIR</string>
+				<key>value</key>
+				<string>/usr/local/mysql</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>MYSQL_DEFAULT_DB</string>
+				<key>value</key>
+				<string>ucn1</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>MYSQL_USER</string>
+				<key>value</key>
+				<string>root</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>MYSQL_PW</string>
+				<key>value</key>
+				<string>dba</string>
+			</dict>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>E9011023-8AC8-4267-BAC0-C19A103E8A35</string>
+</dict>
+</plist>
