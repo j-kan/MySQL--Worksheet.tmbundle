@@ -20,7 +20,7 @@
 				<key>name</key>
 				<string>MYSQL_DEFAULT_DB</string>
 				<key>value</key>
-				<string>ucn1</string>
+				<string>test</string>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -32,7 +32,7 @@
 				<key>name</key>
 				<string>MYSQL_PW</string>
 				<key>value</key>
-				<string>dba</string>
+				<string></string>
 			</dict>
 		</array>
 	</dict>

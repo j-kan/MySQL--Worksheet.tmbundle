@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Completion: table names</string>
+	<key>scope</key>
+	<string>source.mysql</string>
+	<key>settings</key>
+	<dict>
+		<key>completionCommand</key>
+		<string>echo "show tables" | ${MYSQL_DIR}/bin/mysql -D$MYSQL_DEFAULT_DB -u${MYSQL_USER} -p${MYSQL_PW}</string>
+	</dict>
+	<key>uuid</key>
+	<string>53C169C3-B193-4CCF-8A6C-C10A03F2DFD1</string>
+</dict>
+</plist>
