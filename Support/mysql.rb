@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby -wKU
 
-MYSQL_CMD = "#{ENV['MYSQL_DIR']}/bin/mysql -u#{ENV['MYSQL_USER']} -p#{ENV['MYSQL_PW']}"
+MYSQL_CMD = "#{ENV['MYSQL_DIR']}/bin/mysql -u#{ENV['MYSQL_USER']}" + (ENV['MYSQL_PW'].empty? ? "" : " -p#{ENV['MYSQL_PW']}")
 
 
 def query(q)
