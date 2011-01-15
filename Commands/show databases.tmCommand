@@ -9,22 +9,25 @@
 
 require ENV['TM_BUNDLE_SUPPORT'] + '/mysql'
 
-puts ''
-puts formatted_query(ENV['TM_SELECTED_TEXT'] || ENV['TM_CURRENT_LINE'] )
+#puts databases()
 
-#echo "${TM_SELECTED_TEXT:-$TM_CURRENT_LINE}" | ${MYSQL_DIR}/bin/mysql -D$MYSQL_DEFAULT_DB -u${MYSQL_USER} -p${MYSQL_PW} -t 
+puts ''
+puts formatted_query("show databases")
+
 </string>
 	<key>fallbackInput</key>
-	<string>line</string>
+	<string>word</string>
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string>^@</string>
+	<string>^@?</string>
 	<key>name</key>
-	<string>MySQL execute</string>
+	<string>show databases</string>
 	<key>output</key>
 	<string>afterSelectedText</string>
+	<key>scope</key>
+	<string>source.mysql</string>
 	<key>uuid</key>
-	<string>D5AE1732-F96D-49F0-98E0-BEC93C5C679F</string>
+	<string>B7A6F09B-C83F-4184-9D8B-7442A72A2A42</string>
 </dict>
 </plist>

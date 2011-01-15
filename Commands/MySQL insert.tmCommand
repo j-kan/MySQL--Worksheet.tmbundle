@@ -5,11 +5,12 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#! /usr/bin/env ruby
+	<string>#!/usr/bin/env ruby -wKU
 
-TABLE_NAME = ENV['TM_CURRENT_WORD']
-SCHEMA_NAME = ENV['MYSQL_DEFAULT_DB']
-MYSQL_CMD = "#{ENV['MYSQL_DIR']}/bin/mysql -u#{ENV['MYSQL_USER']} -p#{ENV['MYSQL_PW']}"
+require ENV['TM_BUNDLE_SUPPORT'] + '/mysql'
+
+TABLE_NAME = ENV['TM_CURRENT_WORD'].strip()
+SCHEMA_NAME = schema_name()
 
 QUERY = &lt;&lt;END
    select column_name
@@ -18,9 +19,9 @@ QUERY = &lt;&lt;END
       and table_schema='#{SCHEMA_NAME}'
 END
 
-columns   = `echo "#{QUERY}" | #{MYSQL_CMD} -Dinformation_schema`.split(/\n/)
+columns   = query(QUERY)
 colstr    = columns[1..columns.size].join(", ")
-valstr    = (['?'] * columns.length).join(", ")
+valstr    = (['?'] * (columns.size-1)).join(", ")
 
 puts ''
 puts "INSERT INTO #{TABLE_NAME} (#{colstr})"
@@ -33,7 +34,7 @@ puts "  VALUES (#{valstr})"
 	<key>keyEquivalent</key>
 	<string>^@i</string>
 	<key>name</key>
-	<string>MySQL insert</string>
+	<string>insert</string>
 	<key>output</key>
 	<string>afterSelectedText</string>
 	<key>scope</key>

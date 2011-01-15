@@ -12,14 +12,6 @@ require ENV['TM_BUNDLE_SUPPORT'] + '/mysql'
 TABLE_NAME = ENV['TM_CURRENT_WORD'].strip()
 SCHEMA_NAME = schema_name()
 
-
-QUERY = &lt;&lt;END
-   select column_name
-     from information_schema.columns
-    where table_name='#{TABLE_NAME}'
-      and table_schema='#{SCHEMA_NAME}'
-END
-
 QUERY_KEYS = &lt;&lt;END
  select key_columns from 
    (select table_name,
@@ -30,19 +22,12 @@ QUERY_KEYS = &lt;&lt;END
        and constraint_name = 'PRIMARY') as meta
 END
 
-columns = query(QUERY)
-columns = columns[1..columns.size]
 keys    = query(QUERY_KEYS)[1].split(/,/)
-
-values  = columns - keys
-
-setvals = values.map{|col| "#{col} = ?"}.join(",\n       ")
-wheres  =   keys.map{|col| "#{col} = ?"}.join("\n   AND ")
+wheres  = keys.map{|col| "#{col} = ?"}.join("\n   AND ")
 
 puts ''
-puts "UPDATE #{TABLE_NAME}"
-puts "   SET #{setvals}"
-puts " WHERE #{wheres}"
+puts "DELETE FROM #{TABLE_NAME}"
+puts "      WHERE #{wheres}"
 
 
 </string>
@@ -51,14 +36,14 @@ puts " WHERE #{wheres}"
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string>^@u</string>
+	<string>^@d</string>
 	<key>name</key>
-	<string>update</string>
+	<string>delete</string>
 	<key>output</key>
 	<string>afterSelectedText</string>
 	<key>scope</key>
 	<string>source.mysql</string>
 	<key>uuid</key>
-	<string>1CDACE86-9438-4B0A-B7BD-BE9A365DD38C</string>
+	<string>4FDA9568-4661-493A-BCEE-8914E974F774</string>
 </dict>
 </plist>
