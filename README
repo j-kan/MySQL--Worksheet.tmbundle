@@ -1,5 +1,11 @@
 The simplest of all possible SQL bundles....
 
 Edit the environment variables in the preferences to the values for your database.
+Then open a file (your "worksheet"), type a SQL query, select it, and do "MySQL execute".  
+The query results are written back to the same worksheet.  That's basically it.
 
 SQL language file stolen from the SQL bundle.
+
+Update 2011/1/14: Now with a new clever feature/cheesy hack!  If you name your worksheet 
+file something like "worksheet.<database-name>.sql", then queries will automatically go 
+to that database -- so you can keep separate worksheets for different databases.
