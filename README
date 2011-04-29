@@ -1,8 +1,12 @@
 The simplest of all possible SQL bundles....
 
-Edit the environment variables in the preferences to the values for your database.
-Then open a file (your "worksheet"), type a SQL query, select it, and do "MySQL execute".  
-The query results are written back to the same worksheet.  That's basically it.
+* Edit the environment variables in the preferences to the values for your database 
+("Bundles" -> "Show Bundle Editor...", then select "MySQL prefs" under the "MySQL" bundle).
+
+* Then open a file (your "worksheet"), type a SQL query, select it, and do "MySQL execute"
+(or Ctrl-Cmd-Return).  
+
+* The query results are written back to the same worksheet.  That's basically it.  
 
 SQL language file stolen from the SQL bundle.
 
